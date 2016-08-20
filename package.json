@@ -1,7 +1,7 @@
 {
   "name": "angular2-quickstart",
   "version": "1.0.0",
-  "description": "QuickStart package.json from the documentation, supplemented with testing support",
+  "description": "Angular 2 assessment communicating with API to authenticate users and manage projects",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "docker-build": "docker build -t ng2-quickstart .",
@@ -61,5 +61,10 @@
     "protractor": "^3.3.0",
     "rimraf": "^2.5.2"
   },
-  "repository": {}
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/BrandonTruter/angular2.git"
+  },
+  "author": "Brandon Lee Truter <brandonleetruter@gmail.com>",
+  "license": "ISC"
 }
