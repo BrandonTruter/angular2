@@ -60,11 +60,5 @@
     "karma-jasmine": "^0.3.8",
     "protractor": "^3.3.0",
     "rimraf": "^2.5.2"
-  },
-  "repository": {
-    "type": "github",
-    "url": "https://github.com/BrandonTruter/angular2.git"
-  },
-  "author": "Brandon Lee Truter <brandonleetruter@gmail.com>",
-  "license": "ISC"
+  }
 }

@@ -1,3 +1,21 @@
 <h1>Projects</h1>
 
 <button (click) = "logout()">Logout</button>
+
+
+<div class="col-md-7 col-md-offset-3 col-xs-7 col-xs-offset-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong>Projects</strong></h3>
+    </div>
+    <div class="panel-body">
+      <div class="list-group">
+        <a ng-repeat="project in projects" ng-click="editItem(project.pk)" href="#/editproject" class="list-group-item">
+          <h4 class="list-group-item-heading">{{project.title}}</h4>
+          <p class="list-group-item-text">{{project.description}}</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+

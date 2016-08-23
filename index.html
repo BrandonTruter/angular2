@@ -1,38 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <base href="/" />
-  <title>Tangent Angular2 Assessment</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <head>
+    <base href="/" />
+    <title>Tangent Angular2 Assessment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- application css -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="app/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 
-  <!-- bootstrap css -->
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- application JavaScript -->
 
-  <!-- application css -->
-  <link rel="stylesheet" href="styles.css">
+    <script src="app/vendor/es5-shim.min.js"></script>
+    <script src="app/vendor/zone.min.js"></script>
+    <script src="app/vendor/Reflect.min.js"></script>
+    <script src="app/vendor/system.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err); });
+    </script>
 
-  <!-- polyfill(s) for older browsers -->
-  <script src="node_modules/core-js/client/shim.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
 
-  <script src="node_modules/zone.js/dist/zone.js"></script>
-  <script src="node_modules/reflect-metadata/Reflect.js"></script>
-  <script src="node_modules/systemjs/dist/system.src.js"></script>
-
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-
-  <script src="systemjs.config.js"></script>
-  <script>
-    System.import('app').catch(function (err) { console.error(err); });
-  </script>
-</head>
-<body>
-<app>Loading...</app>
-</body>
+  </head>
+  <body>
+    <tangent-app>Loading...</tangent-app>
+  </body>
 </html>
 
