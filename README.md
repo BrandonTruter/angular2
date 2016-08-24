@@ -14,19 +14,8 @@ Run the following scripts:
 ```shell
 npm install
 npm start
-npm test
 ```
 
-Browse to: http://localhost:3000
-
-
-#### TODO
-
-
-##### Login Page
-
--> Via an API POST Request
-
--> Using Token based Authentication
+Browse to: http://localhost:3000/
 
 
