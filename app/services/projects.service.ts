@@ -1,18 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Project } from '../models/project';
-import { Headers, Http, Response, RequestOptions } from '@angular/http';
+import { Headers, Http, Response } from '@angular/http';
 import { Observable } from "rxjs/Observable";
-import { AuthService } from '../auth/auth.service';
+import { UserService } from '../services/user.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 
+const SERVICE_URI = 'http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects';
+
 @Injectable()
 export class ProjectService {
-  private projectsUrl = 'http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects';
+  private projectsUrl = 'http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects/';
   private projects: Project[];
 
-  constructor(private http: Http, private authService: AuthService ) {}
+  project: Project;
+
+  constructor(private http: Http, private userService: UserService ) {}
+
+  getPromise(): Promise<any> {
+    let headers = new Headers();
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token ' + this.userService.getToken());
+    return this.http.get('http://projectservice.staging.tangentmicroservices.com/api/v1/projects/', { headers: headers, body: ''})
+      .toPromise().then(response => response.json()).catch(this.handlePromiseError);
+  }
 
   getProjects(): Observable<Project[]> {
     return this.http.get(this.projectsUrl, { headers: this.getHeaders(), body: this.projects })
@@ -20,11 +33,64 @@ export class ProjectService {
       .catch(this.handleError);
   }
 
+  // GET /api/v1/projects/{pk}/
+
+  getProject(id: number) {
+
+    return this.http.get(`${SERVICE_URI}/${id}/`, {headers: this.getHeaders(), body: ''})
+      .map(response => response.json());
+  }
+
+  addProjectPromise(data: Project): Promise<any> {
+    return this.http.post('http://projectservice.staging.tangentmicroservices.com/api/v1/projects/', data, { headers: this.postHeaders() })
+      .toPromise().then(response => response.json()).catch(this.handlePromiseError);
+  }
+
+  // POST /api/v1/projects/
+
+  saveProject(project: Project) {
+    let headers = new Headers();
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token ' + this.userService.getToken());
+
+    return this.http.post(`${SERVICE_URI}/`, JSON.stringify(project), {headers: headers})
+      .map(response => response.json());
+  }
+
+  // PUT /api/v1/projects/{pk}/
+  // PATCH /api/v1/projects/{pk}/
+
+  updateProject(id: number, data: Project) {
+    return this.http.patch(`${SERVICE_URI}/${id}/`, JSON.stringify(data), {headers: this.getHeaders()})
+      .map(response => response.json());
+  }
+
+  // DELETE /api/v1/projects/{pk}/
+
+  removeProject(id: number) {
+    let headers = new Headers();
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token ' + this.userService.getToken());
+
+    return this.http.delete(`${SERVICE_URI}/${id}/`, {headers: this.getHeaders()})
+      .map(response => response.json().pk);
+  }
+
   private getHeaders() {
     let headers = new Headers();
     headers.append('Accept', 'application/json');
     // headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Token ' + this.authService.getAuthToken());
+    headers.append('Authorization', 'Token ' + this.userService.getToken());
+    return headers;
+  }
+
+  private postHeaders() {
+    let headers = new Headers();
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token ' + this.userService.getToken());
     return headers;
   }
 
@@ -39,30 +105,10 @@ export class ProjectService {
     return Observable.throw(errMsg);
   }
 
-
-
-    getPromise(): Promise<any> {
-      let headers = new Headers();
-      headers.append('Accept', 'application/json');
-      headers.append('Content-Type', 'application/json');
-      headers.append('Authorization', 'Token ' + this.authService.getAuthToken());
-      return this.http.get('http://projectservice.staging.tangentmicroservices.com/api/v1/projects/', { headers: headers, body: ''})
-        .toPromise().then(response => response.json()).catch(this.handlePromiseError);
-    }
-
-    private handlePromiseError(error: any): Promise<any> {
-      console.error('An error occurred', error);
-      return Promise.reject(error.message || error);
-    }
-
-  // getOrders(id: number) : Observable<IOrder[]> {
-  //   return this.http.get(this._baseUrl + 'orders.json')
-  //     .map((res: Response) => {
-  //       this.orders = res.json();
-  //       return this.orders.filter((order: IOrder) => order.customerId === id);
-  //     })
-  //     .catch(this.handleError);
-  // }
+  private handlePromiseError(error: any): Promise<any> {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
+  }
 
   getTestProjects(): Project[] {
     return [
@@ -164,11 +210,3 @@ export class ProjectService {
   }
 
 }
-
-
-// getProjects(id: number): Observable<Project[]> {
-//   return this.http.get(this.projectsUrl, { headers: this.getHeaders() })
-//     .map((res) => {
-//       this.projects = <Project[]>res.json();
-//       return this.projects.filter((task: Tasks) => task.project === id);
-//     })

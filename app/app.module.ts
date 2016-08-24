@@ -6,8 +6,11 @@ import { routing } from './app.routes';
 import { AppComponent }  from './app.component';
 import { LoginComponent }  from './login/login.component';
 import { ProjectsComponent } from './projects/projects.component';
-import { AuthService } from './auth/auth.service';
+import { NewProjectComponent } from './projects/new.component';
+import { ShowProjectComponent } from './projects/show.component';
+import { EditProjectComponent } from './projects/edit.component';
 import { AuthGuard } from './auth/auth.guard';
+import { AuthService } from './auth/auth.service';
 import { UserService } from './services/user.service';
 import { ProjectService } from './services/projects.service';
 
@@ -16,15 +19,10 @@ import { ProjectService } from './services/projects.service';
     BrowserModule, FormsModule, HttpModule, routing
   ],
   declarations: [
-    AppComponent,
-    LoginComponent,
-    ProjectsComponent
+    AppComponent, LoginComponent, ProjectsComponent, NewProjectComponent, ShowProjectComponent, EditProjectComponent
   ],
   providers: [
-    AuthService,
-    AuthGuard,
-    UserService,
-    ProjectService
+    AuthService, AuthGuard, UserService, ProjectService
   ],
   bootstrap: [ AppComponent ]
 })

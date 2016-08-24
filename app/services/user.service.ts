@@ -1,36 +1,42 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
-import { AuthService } from '../auth/auth.service';
+import { Injectable }    from '@angular/core';
+import { AuthService }   from '../auth/auth.service';
+import { Http, Headers } from '@angular/http';
+
+const STORAGE_KEY = 'token';
 
 @Injectable()
 export class UserService {
-  isLoggedin: boolean = false;
+  isLoggedIn: boolean = false;
 
-  constructor(private _http:Http, public _auth: AuthService) {
-    if (this._auth.getAuthToken()) {
-      this.isLoggedin = true;
-    }
-  }
+  constructor(private auth: AuthService, private http: Http) {}
 
-  loginfn(username:string, password:string) {
-    let creds = 'username=' + username + '&password=' + password;
+  authenticate(username:string, password:string) {
+    let headers = new Headers();
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    let body = 'username=' + username + '&password=' + password;
 
     return new Promise((resolve) => {
-      this._http.post(this._auth.getEndpoint(), creds, {headers: this._auth.getHeader()})
+      this.http.post(this.auth.getEndpoint(), body, {headers: headers})
         .subscribe((data) => {
-            let token = data.json().token;
-            if (token) {
-              this._auth.setAuthToken(token);
-              this._auth.setCurrentUser(username);
-              this.isLoggedin = true;}
-            resolve(this.isLoggedin)
+
+          let apiKey = data.json().token;
+
+          if (apiKey) {
+            this.auth.setToken(apiKey);
+            this.isLoggedIn = true;
           }
-        )
+          else {
+            this.isLoggedIn = false;
+          }
+
+          resolve(this.isLoggedIn);
+      })
     })
   }
 
-  logout(): void {
-    this._auth.removeAuthToken();
+  getToken() {
+    return this.auth.getToken();
   }
 
 }
