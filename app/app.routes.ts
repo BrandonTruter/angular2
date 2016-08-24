@@ -2,7 +2,7 @@
  * Created by brandon on 2016/08/20.
  */
 
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './login/index';
 import { ProjectsComponent } from './projects/projects.component';

@@ -6,13 +6,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute }  from '@angular/router';
 import { Project } from './../models/project';
 import { ProjectService } from "../services/projects.service";
-import { RouteParams } from "@angular/router-deprecated/esm";
 
 @Component({
   moduleId: module.id,
   template: `
       <section class="container">
-        <h2>Selected Project: <span value="{{projectID}}"></span></h2>
+        <h2>Selected Project</h2>
         <div class="row">
             <div class="black-text pull-left"><h6>Title</h6></div>
             <div class="blue-grey-text pull-right">{{project.title ? project.title : 'Unknown'}}</div>
@@ -52,7 +51,7 @@ export class ShowProjectComponent implements OnInit {
   // taskID: number;
   project: Project;
 
-  private projectID: string;
+  private projectID:number;
 
   constructor( private router: Router, private param: ActivatedRoute, private projectService:ProjectService ){
     this.projectID = param.snapshot['id'];
@@ -67,7 +66,7 @@ export class ShowProjectComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.projectID = param.snapshot['id'];
+    this.loadProject(this.projectID);
   }
 
   updateProject(id: number, data: Project) {
