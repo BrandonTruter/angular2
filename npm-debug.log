@@ -1,37 +1,175 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'start' ]
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'i' ]
 2 info using npm@2.1.17
 3 info using node@v4.4.7
-4 verbose run-script [ 'prestart', 'start', 'poststart' ]
-5 info prestart angular2-quickstart@1.0.0
-6 info start angular2-quickstart@1.0.0
-7 verbose unsafe-perm in lifecycle true
-8 info angular2-quickstart@1.0.0 Failed to exec start script
-9 verbose stack Error: angular2-quickstart@1.0.0 start: `tsc && concurrently "tsc -w" "lite-server" `
-9 verbose stack Exit status 2
-9 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:212:16)
-9 verbose stack     at emitTwo (events.js:87:13)
-9 verbose stack     at EventEmitter.emit (events.js:172:7)
-9 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:14:12)
-9 verbose stack     at emitTwo (events.js:87:13)
-9 verbose stack     at ChildProcess.emit (events.js:172:7)
-9 verbose stack     at maybeClose (internal/child_process.js:827:16)
-9 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
-10 verbose pkgid angular2-quickstart@1.0.0
-11 verbose cwd /Users/brandon/sites/assessment
-12 error Darwin 15.6.0
-13 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "start"
-14 error node v4.4.7
-15 error npm  v2.1.17
-16 error code ELIFECYCLE
-17 error angular2-quickstart@1.0.0 start: `tsc && concurrently "tsc -w" "lite-server" `
-17 error Exit status 2
-18 error Failed at the angular2-quickstart@1.0.0 start script 'tsc && concurrently "tsc -w" "lite-server" '.
-18 error This is most likely a problem with the angular2-quickstart package,
-18 error not with npm itself.
-18 error Tell the author that this fails on your system:
-18 error     tsc && concurrently "tsc -w" "lite-server"
-18 error You can get their info via:
-18 error     npm owner ls angular2-quickstart
-18 error There is likely additional logging output above.
-19 verbose exit [ 1, true ]
+4 warn package.json angular2-quickstart@1.0.0 No repository field.
+5 verbose install where, deps [ '/Users/brandon/sites/assessment',
+5 verbose install   [ '@angular/common',
+5 verbose install     '@angular/compiler',
+5 verbose install     '@angular/core',
+5 verbose install     '@angular/forms',
+5 verbose install     '@angular/http',
+5 verbose install     '@angular/platform-browser',
+5 verbose install     '@angular/platform-browser-dynamic',
+5 verbose install     '@angular/router',
+5 verbose install     '@angular/router-deprecated',
+5 verbose install     '@angular/upgrade',
+5 verbose install     'systemjs',
+5 verbose install     'core-js',
+5 verbose install     'reflect-metadata',
+5 verbose install     'rxjs',
+5 verbose install     'zone.js',
+5 verbose install     'angular2-in-memory-web-api',
+5 verbose install     'bootstrap',
+5 verbose install     'concurrently',
+5 verbose install     'lite-server',
+5 verbose install     'typescript',
+5 verbose install     'typings',
+5 verbose install     'canonical-path',
+5 verbose install     'http-server',
+5 verbose install     'tslint',
+5 verbose install     'lodash',
+5 verbose install     'jasmine-core',
+5 verbose install     'karma',
+5 verbose install     'karma-chrome-launcher',
+5 verbose install     'karma-cli',
+5 verbose install     'karma-htmlfile-reporter',
+5 verbose install     'karma-jasmine',
+5 verbose install     'protractor',
+5 verbose install     'rimraf' ] ]
+6 verbose install where, peers [ '/Users/brandon/sites/assessment', [] ]
+7 info preinstall angular2-quickstart@1.0.0
+8 warn package.json @angular/common@2.0.0-rc.5 No description
+9 warn package.json @angular/core@2.0.0-rc.5 No description
+10 warn package.json @angular/forms@0.3.0 No description
+11 warn package.json @angular/compiler@2.0.0-rc.5 No description
+12 warn package.json @angular/router@3.0.0-rc.1 No description
+13 warn package.json @angular/router@3.0.0-rc.1 No README data
+14 warn package.json @angular/platform-browser@2.0.0-rc.5 No description
+15 warn package.json @angular/platform-browser-dynamic@2.0.0-rc.5 No description
+16 warn package.json @angular/http@2.0.0-rc.5 No description
+17 warn package.json @angular/upgrade@2.0.0-rc.5 No description
+18 warn package.json @angular/router-deprecated@2.0.0-rc.2 No description
+19 verbose already installed skipping lite-server@^2.2.0 /Users/brandon/sites/assessment
+20 verbose already installed skipping typescript@^1.8.10 /Users/brandon/sites/assessment
+21 verbose already installed skipping typings@^1.0.4 /Users/brandon/sites/assessment
+22 verbose already installed skipping canonical-path@0.0.2 /Users/brandon/sites/assessment
+23 verbose already installed skipping http-server@^0.9.0 /Users/brandon/sites/assessment
+24 verbose already installed skipping tslint@^3.7.4 /Users/brandon/sites/assessment
+25 verbose already installed skipping lodash@^4.11.1 /Users/brandon/sites/assessment
+26 verbose already installed skipping jasmine-core@~2.4.1 /Users/brandon/sites/assessment
+27 verbose already installed skipping karma@^0.13.22 /Users/brandon/sites/assessment
+28 verbose already installed skipping karma-chrome-launcher@^0.2.3 /Users/brandon/sites/assessment
+29 verbose already installed skipping karma-cli@^0.1.2 /Users/brandon/sites/assessment
+30 verbose already installed skipping karma-htmlfile-reporter@^0.2.2 /Users/brandon/sites/assessment
+31 verbose already installed skipping karma-jasmine@^0.3.8 /Users/brandon/sites/assessment
+32 verbose already installed skipping protractor@^3.3.0 /Users/brandon/sites/assessment
+33 verbose already installed skipping rimraf@^2.5.2 /Users/brandon/sites/assessment
+34 verbose already installed skipping @angular/common@2.0.0-rc.5 /Users/brandon/sites/assessment
+35 verbose already installed skipping @angular/compiler@2.0.0-rc.5 /Users/brandon/sites/assessment
+36 verbose already installed skipping @angular/core@2.0.0-rc.5 /Users/brandon/sites/assessment
+37 verbose already installed skipping @angular/forms@0.3.0 /Users/brandon/sites/assessment
+38 verbose already installed skipping @angular/http@2.0.0-rc.5 /Users/brandon/sites/assessment
+39 verbose already installed skipping @angular/platform-browser@2.0.0-rc.5 /Users/brandon/sites/assessment
+40 verbose already installed skipping @angular/platform-browser-dynamic@2.0.0-rc.5 /Users/brandon/sites/assessment
+41 verbose already installed skipping @angular/router@3.0.0-rc.1 /Users/brandon/sites/assessment
+42 verbose already installed skipping @angular/router-deprecated@2.0.0-rc.2 /Users/brandon/sites/assessment
+43 verbose already installed skipping @angular/upgrade@2.0.0-rc.5 /Users/brandon/sites/assessment
+44 verbose already installed skipping systemjs@0.19.27 /Users/brandon/sites/assessment
+45 verbose already installed skipping core-js@^2.4.0 /Users/brandon/sites/assessment
+46 verbose already installed skipping reflect-metadata@^0.1.3 /Users/brandon/sites/assessment
+47 verbose already installed skipping rxjs@5.0.0-beta.6 /Users/brandon/sites/assessment
+48 verbose already installed skipping zone.js@^0.6.12 /Users/brandon/sites/assessment
+49 verbose already installed skipping angular2-in-memory-web-api@0.0.15 /Users/brandon/sites/assessment
+50 verbose already installed skipping bootstrap@^3.3.6 /Users/brandon/sites/assessment
+51 verbose already installed skipping concurrently@^2.2.0 /Users/brandon/sites/assessment
+52 silly install resolved []
+53 info build /Users/brandon/sites/assessment
+54 verbose linkStuff [ false, false, false, '/Users/brandon/sites' ]
+55 info linkStuff angular2-quickstart@1.0.0
+56 verbose linkBins angular2-quickstart@1.0.0
+57 verbose linkMans angular2-quickstart@1.0.0
+58 verbose rebuildBundles angular2-quickstart@1.0.0
+59 verbose rebuildBundles [ '.bin',
+59 verbose rebuildBundles   '@angular',
+59 verbose rebuildBundles   'angular2-in-memory-web-api',
+59 verbose rebuildBundles   'bootstrap',
+59 verbose rebuildBundles   'canonical-path',
+59 verbose rebuildBundles   'concurrently',
+59 verbose rebuildBundles   'core-js',
+59 verbose rebuildBundles   'http-server',
+59 verbose rebuildBundles   'jasmine-core',
+59 verbose rebuildBundles   'karma',
+59 verbose rebuildBundles   'karma-chrome-launcher',
+59 verbose rebuildBundles   'karma-cli',
+59 verbose rebuildBundles   'karma-htmlfile-reporter',
+59 verbose rebuildBundles   'karma-jasmine',
+59 verbose rebuildBundles   'lite-server',
+59 verbose rebuildBundles   'lodash',
+59 verbose rebuildBundles   'moment',
+59 verbose rebuildBundles   'ng2-bootstrap',
+59 verbose rebuildBundles   'protractor',
+59 verbose rebuildBundles   'reflect-metadata',
+59 verbose rebuildBundles   'rimraf',
+59 verbose rebuildBundles   'rxjs',
+59 verbose rebuildBundles   'systemjs',
+59 verbose rebuildBundles   'tslint',
+59 verbose rebuildBundles   'typescript',
+59 verbose rebuildBundles   'typings',
+59 verbose rebuildBundles   'zone.js' ]
+60 verbose rebuild bundle /Users/brandon/sites/assessment/node_modules/moment
+61 info build /Users/brandon/sites/assessment/node_modules/moment
+62 info preinstall moment@2.14.1
+63 verbose linkStuff [ false,
+63 verbose linkStuff   false,
+63 verbose linkStuff   false,
+63 verbose linkStuff   '/Users/brandon/sites/assessment/node_modules' ]
+64 info linkStuff moment@2.14.1
+65 verbose linkBins moment@2.14.1
+66 verbose linkMans moment@2.14.1
+67 verbose rebuildBundles moment@2.14.1
+68 info install moment@2.14.1
+69 info postinstall moment@2.14.1
+70 verbose rebuild bundle /Users/brandon/sites/assessment/node_modules/ng2-bootstrap
+71 info build /Users/brandon/sites/assessment/node_modules/ng2-bootstrap
+72 info preinstall ng2-bootstrap@1.0.23
+73 verbose linkStuff [ false,
+73 verbose linkStuff   false,
+73 verbose linkStuff   false,
+73 verbose linkStuff   '/Users/brandon/sites/assessment/node_modules' ]
+74 info linkStuff ng2-bootstrap@1.0.23
+75 verbose linkBins ng2-bootstrap@1.0.23
+76 verbose linkMans ng2-bootstrap@1.0.23
+77 verbose rebuildBundles ng2-bootstrap@1.0.23
+78 verbose rebuildBundles [ 'moment' ]
+79 info install ng2-bootstrap@1.0.23
+80 info postinstall ng2-bootstrap@1.0.23
+81 info install angular2-quickstart@1.0.0
+82 info postinstall angular2-quickstart@1.0.0
+83 verbose unsafe-perm in lifecycle true
+84 info prepublish angular2-quickstart@1.0.0
+85 verbose stack Error: The package @angular/common does not satisfy its siblings' peerDependencies requirements!
+85 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:103:32
+85 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:225:5
+85 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:138:5
+85 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+85 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+85 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+85 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+85 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+85 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+85 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+86 verbose cwd /Users/brandon/sites/assessment
+87 error Darwin 15.6.0
+88 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "i"
+89 error node v4.4.7
+90 error npm  v2.1.17
+91 error code EPEERINVALID
+92 error peerinvalid The package @angular/common does not satisfy its siblings' peerDependencies requirements!
+92 error peerinvalid Peer @angular/forms@0.3.0 wants @angular/common@^2.0.0-rc.5
+92 error peerinvalid Peer @angular/platform-browser@2.0.0-rc.5 wants @angular/common@^2.0.0-rc.5
+92 error peerinvalid Peer @angular/platform-browser-dynamic@2.0.0-rc.5 wants @angular/common@^2.0.0-rc.5
+92 error peerinvalid Peer @angular/router@3.0.0-rc.1 wants @angular/common@^2.0.0-rc.5
+92 error peerinvalid Peer @angular/router-deprecated@2.0.0-rc.2 wants @angular/common@^2.0.0-rc
+92 error peerinvalid Peer ng2-bootstrap@1.0.23 wants @angular/common@2.0.0-rc.4
+93 verbose exit [ 1, true ]

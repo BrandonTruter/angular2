@@ -13,7 +13,7 @@ import { ProjectService } from "../services/projects.service";
   template: `
       <div class="row">
           <div class="col-sm-12">
-              <h1>New project</h1>
+              <h1>Edit project</h1>
               <form #projectForm="ngForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="title" class="col-sm-2 control-label">Title</label>
@@ -62,45 +62,135 @@ import { ProjectService } from "../services/projects.service";
 
 
 export class EditProjectComponent implements OnInit  {
-  project: Project;
-  projectID: number;
+  public project: Project;
+  public projectID: number;
+  constructor( private router: Router, private projectService: ProjectService, private route: ActivatedRoute) { }
 
-  constructor(private router: Router, private projectService: ProjectService, private param: ActivatedRoute) {
-    this.projectID = param.snapshot['pk'];
-  }
-
-  onSubmit(e: any) {
-    console.log("Edit Project");
-    console.log(this.project);
-
-    this.project.start_date = this.project.start_date.toString();
-    this.project.end_date = this.project.end_date.toString();
-
-    this.projectService.updateProject(this.project.pk, this.project).subscribe(
-      data => {
-        alert(data);
-        console.log(data);
-      },
-      error => {
-        console.error('error' + error[0])
-      },
-      () => {
-        alert("DONE");
-      }
-    )
-  }
-
-  ngOnInit() {
+  ngOnInit()  {
+    this.projectID = this.route.params['id'];
     this.loadProject(this.projectID);
   }
 
   private loadProject(id: number) {
     this.projectService.getProject(id)
       .subscribe(
-        data => { this.project = data; this.projectID = data.pk; },
-        error => console.error('Error: ' + error[0]),
+        data => { this.project = <Project>data; },
+        error => console.error('Error: ' + error),
         () => { console.log('LOADED') }
       );
   }
 
+  update(pk: number, title: string, description: string, start_date: string, end_date: string, is_billable: boolean, is_active: boolean) {
+    this.projectService.updateDetails(pk, title, description, start_date, end_date, is_billable, is_active);
+  }
+
+  cancel() {
+
+  }
+
+  clear() {
+    // this.
+  }
+
+  onSubmit(e: any) {
+    this.projectService.updateProject(this.projectID, this.project).subscribe(
+      data => { alert(data); },
+      error => { alert('error' + error[0]) },
+      () => { alert("DONE"); }
+    )
+  }
+
 }
+
+// return this.loadProject(this.projectID).map(project => this.project = project);
+// this.project.start_date = this.project.start_date.toString();
+// this.project.end_date = this.project.end_date.toString();
+
+// this.route.params.forEach((params: Params) => {
+//   let id = +params['id'];
+//   this.loadProject(id).then(project => this.project = project);
+// });
+
+
+// @Component({
+//   selector: 'app',
+//   template: `<input type="datetime-local" [value]="date"
+//           (change)="date=$event.target.value" /> {{date}}`
+// })
+// export class AppComponent {
+//   date: string;
+//   constructor() {
+//     this.date = new Date().toISOString().slice(0, 16);
+//   }
+// }
+
+// private toDateString(date: Date): string {
+//   return (date.getFullYear().toString() + '-'
+//     + ("0" + (date.getMonth() + 1)).slice(-2) + '-'
+//     + ("0" + (date.getDate())).slice(-2))
+//     + 'T' + date.toTimeString().slice(0,5);
+// }
+
+// @Component({
+//   selector: 'my-app',
+//   template: `
+//       <form>
+//         <input type="datetime-local" [(ngModel)]="dateTimeLocal"><br />
+//         {{dateTimeLocal}}
+//       </form>
+//     `
+// })
+// export class AppComponent {
+//   private _dateTimeLocal: Date;
+//
+//   constructor() {
+//     this._dateTimeLocal = new Date();
+//   }
+//
+//   private parseDateToStringWithFormat(date: Date): string {
+//     let result: string;
+//     let dd = date.getDate().toString();
+//     let mm = (date.getMonth() + 1).toString();
+//     let hh = date.getHours().toString();
+//     let min = date.getMinutes().toString();
+//     dd = dd.length === 2 ? dd : "0" + dd;
+//     mm = mm.length === 2 ? mm : "0" + mm;
+//     hh = hh.length === 2 ? hh : "0" + hh;
+//     min = min.length === 2 ? min : "0" + min;
+//     result = [date.getFullYear(), '-', mm, '-', dd, 'T', hh, ':', min].join('');
+//
+//     return result;
+//   }
+//
+//   public set dateTimeLocal(v: string) {
+//     let actualParsedDate = v ? new Date(v) : new Date();
+//     let normalizedParsedDate = new Date(actualParsedDate.getTime() + (actualParsedDate.getTimezoneOffset() * 60000));
+//     this._dateTimeLocal = normalizedParsedDate;
+//   }
+//
+//
+//   public get dateTimeLocal(): string {
+//     return this.parseDateToStringWithFormat(this._dateTimeLocal);
+//   }
+// }
+
+// Sadly, NgModel does not work at this time for input of type date. I found a simple workaround however.
+//
+// // In your HTML
+// <input #myDatePicker
+// type="date"
+// value='{{ myDate | date:"yyyy-MM-dd" }}'
+// (input)="onInput(myDatePicker.value)" />
+//
+// // In your component (TypeScript):
+//   public myDate: Date;
+//
+// public onInput(value: Date): void{
+//
+//   this.myDate = value;
+// }
+
+
+
+// <input type="date" [(ngModel)]="company.birthdate"/>
+

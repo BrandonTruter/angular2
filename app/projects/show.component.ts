@@ -12,6 +12,9 @@ import { ProjectService } from "../services/projects.service";
   template: `
       <section class="container">
         <h2>Selected Project</h2>
+        
+        <div>{{errorMessage}}</div>
+        
         <div class="row">
             <div class="black-text pull-left"><h6>Title</h6></div>
             <div class="blue-grey-text pull-right">{{project.title ? project.title : 'Unknown'}}</div>
@@ -39,7 +42,7 @@ import { ProjectService } from "../services/projects.service";
         <div class="col-xs-8 col-sm-offset-1">
           <button class="btn-primary" [routerLink]="['projects']">Back</button>
           <button class="btn-primary" [routerLink]="['editProject/' + projectID + '/']">Edit</button>
-          <button (click)="removeProject(project.id)" class="red-text">Delete</button>
+          <button (click)="removeProject(project.pk)" class="red-text">Delete</button>
         </div>
       </section>
     
@@ -47,37 +50,37 @@ import { ProjectService } from "../services/projects.service";
 })
 
 export class ShowProjectComponent implements OnInit {
-  errorMessage: string;
-  // taskID: number;
   project: Project;
+  projectID: number;
+  errorMessage: string;
+  constructor( private router: Router, private route: ActivatedRoute, private projectService:ProjectService ){ }
 
-  private projectID:number;
-
-  constructor( private router: Router, private param: ActivatedRoute, private projectService:ProjectService ){
-    this.projectID = param.snapshot['id'];
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.project.pk = +params['id'];
+    });
   }
 
   removeProject(id: number) {
     this.projectService.removeProject(id).subscribe(
-      data => {  console.log(data) },
+      data => {  this.router.navigate(['projects/index']) },
       error => { this.errorMessage = <any>error },
       () => { alert("DONE"); }
     );
   }
 
-  ngOnInit() {
-    this.loadProject(this.projectID);
-  }
-
   updateProject(id: number, data: Project) {
     this.projectService.removeProject(id).subscribe(
-      data => { this.project = data },
+      project => {
+        this.project = project;
+        this.router.navigate(['/projects/', project.id]);
+      },
       error => { this.errorMessage = error },
       () => { console.log("DONE"); }
     );
   }
 
-  private loadProject(id: number) {
+  loadProject(id: number) {
     this.projectService.getProject(id)
       .subscribe(
         data => { this.project = data; },
@@ -87,3 +90,15 @@ export class ShowProjectComponent implements OnInit {
   }
 
 }
+
+// loadProject(id: number) {
+//   this.projectService.getProject(id)
+//     .subscribe(
+//       data => { this.project = data; this.projectID = data.pk; },
+//       error => console.error('Error: ' + error[0]),
+//       () => { console.log('LOADED') }
+//     );
+// }
+
+// this.projectID = this.route.params['id'];
+// this.loadProject(this.projectID).map(project => this.project = project);

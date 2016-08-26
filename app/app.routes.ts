@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './login/index';
 import { ProjectsComponent } from './projects/projects.component';
+import { ProjectsIndexComponent } from './projects/index.component';
 import { NewProjectComponent } from './projects/new.component';
 import { ShowProjectComponent } from './projects/show.component';
 import { EditProjectComponent } from './projects/edit.component';
@@ -14,6 +15,7 @@ import { EditProjectComponent } from './projects/edit.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard] },
+  { path: 'projects/index', component: ProjectsIndexComponent, canActivate: [AuthGuard] },
   { path: 'newProject', component: NewProjectComponent, canActivate: [AuthGuard] },
   { path: 'projects/:id', component: ShowProjectComponent, canActivate: [AuthGuard] },
   { path: 'editProject/:pk', component: EditProjectComponent, canActivate: [AuthGuard] },
