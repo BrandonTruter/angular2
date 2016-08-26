@@ -90,15 +90,3 @@ export class ShowProjectComponent implements OnInit {
   }
 
 }
-
-// loadProject(id: number) {
-//   this.projectService.getProject(id)
-//     .subscribe(
-//       data => { this.project = data; this.projectID = data.pk; },
-//       error => console.error('Error: ' + error[0]),
-//       () => { console.log('LOADED') }
-//     );
-// }
-
-// this.projectID = this.route.params['id'];
-// this.loadProject(this.projectID).map(project => this.project = project);

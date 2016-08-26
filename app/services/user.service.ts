@@ -19,8 +19,6 @@ export class UserService {
       .subscribe((res) => { this.router.navigate(['projects/index']) })
   }
 
-
-
   generateApiKey(username:string, password:string): Observable<string> {
     let headers = new Headers();
     headers.append('Accept', 'application/json');
@@ -39,8 +37,6 @@ export class UserService {
         }
       });
   }
-
-
 
   authenticate(username:string, password:string) {
     let headers = new Headers();
@@ -78,31 +74,5 @@ export class UserService {
   }
 
 }
-
-
-
-// @Injectable()
-// export class AuthService {
-//   isLoggedin: boolean;
-//   loginfn(usercreds) {
-//     this.isLoggedin = false;
-//     var headers = new Headers();
-//     var creds = 'name=' + usercreds.username + '&password=' + usercreds.password;
-//     headers.append('Content-Type', 'application/X-www-form-urlencoded');
-//     return new Promise((resolve) => {
-//       this._http.post('http://localhost:3333/authenticate', creds, {headers: headers}).subscribe((data) => {
-//           if(data.json().success) {
-//             window.localStorage.setItem('auth_key', data.json().token);
-//             this.isLoggedin = true;}
-//           resolve(this.isLoggedin)
-//         }
-//       )
-//
-//     })
-//   }
-// }
-
-
-
 
 

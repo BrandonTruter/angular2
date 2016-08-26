@@ -8,12 +8,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 
 const SERVICE_URI = 'http://projectservice.staging.tangentmicroservices.com:80/api/v1/projects';
-
-const PROJECT_BY_PK_SERVICE_BASE_URI = 'http://projectservice.staging.tangentmicroservices.com/api/v1/projects/';
-
-const PROJECT_SERVICE_BASE_URI = 'http://projectservice.staging.tangentmicroservices.com/api/v1/';
-const AUTH_SERVICE_BASE_URI = 'http://userservice.staging.tangentmicroservices.com/';
-
+const SERVICE_ENDPOINT = 'http://projectservice.staging.tangentmicroservices.com/api/v1/projects/';
 
 @Injectable()
 export class ProjectService {
@@ -24,7 +19,6 @@ export class ProjectService {
   constructor(private http: Http, private userService: UserService ) {}
 
   // GET /api/v1/projects/{pk}/
-
 
   getPromise(): Promise<any> {
     let headers = new Headers();
@@ -52,7 +46,6 @@ export class ProjectService {
       .catch(this.handleError);
   }
 
-
   // POST /api/v1/projects/
 
   addProjectPromise(data: Project): Promise<any> {
@@ -72,7 +65,6 @@ export class ProjectService {
 
   // PUT /api/v1/projects/{pk}/     PATCH /api/v1/projects/{pk}/
 
-
   updateProject(pk: number, data: Project) {
    return this.http.put(`${SERVICE_URI}/${pk}/`, JSON.stringify(data), {headers: this.getHeaders()})
       .map(response => response.json());
@@ -90,7 +82,7 @@ export class ProjectService {
       is_billable: is_billable,
       is_active: is_active
     });
-    let url = PROJECT_BY_PK_SERVICE_BASE_URI + pk + '/';
+    let url = SERVICE_ENDPOINT + pk + '/';
     let headers = new Headers();
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
@@ -98,7 +90,6 @@ export class ProjectService {
 
     return this.http.put(url, postData, {headers: headers}).map(response => response.json());
   }
-
 
   // DELETE /api/v1/projects/{pk}/
 
@@ -244,31 +235,4 @@ export class ProjectService {
   }
 
 }
-
-
-// `${SERVICE_URI}/${id}/`;
-
-
-//
-// addProject( title: string, description: string, start_date: string, end_date: string, is_billable: boolean, is_active: boolean ) {
-//   let postData = JSON.stringify({ title: title, description: description, start_date: start_date, end_date: end_date, is_billable: is_billable, is_active: is_active });
-//
-//   // this.projectService.saveProject(postData);
-//
-//   this.projects.push(this.projectService.saveProject(postData));
-// }
-
-
-// getProjectPromise(id: number): Promise<Project> {
-//   return this.getPromise().then(heroes => heroes.find(hero => hero.id === id));
-// }
-
-
-
-// let postData = JSON.stringify({ title: title, description: description, start_date: start_date, end_date: end_date, is_billable: is_billable, is_active: is_active });
-// return this.http.put(`${SERVICE_URI}/${id}/`, JSON.stringify(data), {headers: this.getHeaders()})
-// headers: { "Authorization": 'Token '+ this.userService.getToken()
-// this.http.put(url, { pk: pk, title: title, description: description, start_date: start_date, end_date: end_date, is_billable: is_billable, is_active: is_active }, { headers: headers })
-//   .success(function (response, status, headers, config) {
-
 

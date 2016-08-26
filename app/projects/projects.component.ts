@@ -39,8 +39,6 @@ import {ProjectService} from "../services/projects.service";
                     <button class="button alert tiny pull-right" (click)="deleteProject(project.pk)">Delete</button>
                   </div>
                 </div>
-                
-                
               </div><hr/>
               
               <div class="col-xs-8 col-sm-offset-1">

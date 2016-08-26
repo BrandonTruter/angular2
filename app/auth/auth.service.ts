@@ -66,32 +66,3 @@ export class AuthService {
     localStorage.removeItem(STORAGE_KEY);
   }
 }
-
-// logout(): void {
-//   // clear token remove user from local storage to log user out
-//   this.token = null;
-//   localStorage.removeItem('currentUser');
-// }
-
-// getAuthToken() {
-//   return localStorage.getItem('token');
-// }
-
-// setAuthToken(token: string) {
-// this.token = token;
-//   localStorage.setItem('token', token);
-// }
-
-// removeAuthToken() {
-// this.token = null;
-// localStorage.removeItem('token');
-// localStorage.removeItem('currentUser');
-// }
-
-// getCurrentUser() {
-//   JSON.parse(localStorage.getItem('currentUser'));
-// }
-
-// setCurrentUser(username: string) {
-//   localStorage.setItem('currentUser', JSON.stringify({ username: username, token: this.token }));
-// }

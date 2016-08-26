@@ -1,7 +1,3 @@
-/**
- * Created by brandon on 2016/08/23.
- */
-
 import { Component, OnInit } from '@angular/core';
 import { Router }  from '@angular/router';
 import { Project } from './../models/project';

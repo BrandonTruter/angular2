@@ -7,11 +7,9 @@ import { ProjectService } from "../services/projects.service";
   moduleId: module.id,
   template: `
       <div class="container">
-      
         <div class="error" *ngIf="errorMessage">
           <div class="error-message">{{errorMessage}}</div>
         </div>
-      
         <div class="row">
           <div class="col-md-12">
             <h3>PROJECTS</h3>
@@ -39,19 +37,6 @@ import { ProjectService } from "../services/projects.service";
                   <td>
                     <button type="button" class="btn-primary" (click)="renderEdit(project.pk)">Edit</button>
                     <button type="button" class="btn-primary" (click)="deleteProject(project.pk)">Delete</button>
-                    <button type="button" class="btn-primary" (click)="isCollapsed = !isCollapsed">Tasks</button>
-                    <br/>
-      
-                    <div class="card card-block card-header">
-                      <div class="well well-lg">
-                        <div *ngIf="task" class="row light-text">
-                          <div class="col-xs-6 col-md-4 grey-text">Title: {{task.title ? task.title : 'Unknown'}}</div>
-                          <div class="col-xs-6 col-md-4>Due Date: {{task.due_date ? task.due_date : 'Unknown'}}</div>
-                          <div class="col-xs-6 col-md-4>Estimated Hours: {{task.estimated_hours ? task.estimated_hours : 'Unknown'}}</div>
-                        </div>
-                      </div>
-                    </div>
-      
                   </td>
                 </tr>
                 <tfoot>
@@ -66,19 +51,20 @@ import { ProjectService } from "../services/projects.service";
             </div>
           </div>
         </div>
-      
       </div>
-
   `
 })
 
 export class ProjectsIndexComponent implements OnInit {
   errorMessage: string;
   projects: Project[];
+  constructor(private router: Router, private projectService: ProjectService) {}
 
-  public isCollapsed:boolean = false;
-
-  constructor(private router: Router, private projectService: ProjectService) {
+  ngOnInit() {
+    this.getPromiseProjects();
+    if(!this.projects) {
+      this.loadDefaultProjects();
+    }
   }
 
   renderNew() {
@@ -101,13 +87,6 @@ export class ProjectsIndexComponent implements OnInit {
         () => alert("DONE"))
   }
 
-  ngOnInit() {
-    this.getPromiseProjects();
-    if(!this.projects) {
-      this.loadDefaultProjects();
-    }
-  }
-
   loadDefaultProjects() {
     this.projects = this.projectService.getTestProjects();
   }
@@ -115,7 +94,6 @@ export class ProjectsIndexComponent implements OnInit {
   getPromiseProjects() {
     this.projectService.getPromise().then(result => this.projects = result);
   }
-
 
   getProject(id: number) {
     this.projectService.getProject(id).subscribe(

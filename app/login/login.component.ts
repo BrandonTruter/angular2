@@ -40,8 +40,6 @@ import { UserService } from '../services/user.service';
           <span class="help-block">{{ errorMessage }}</span>
         </div>
       </div>
-      
-
   `,
   providers: [UserService]
 })
@@ -52,18 +50,15 @@ export class LoginComponent {
   localUser = { username: '', password: '' };
   constructor(private router: Router, private userService: UserService){ }
 
-
   login() {
     this.userService.authenticate(this.localUser.username, this.localUser.password)
       .then((res) => { this.router.navigate(['projects']); })
       .catch(err => { console.log(err) });
   }
 
-
   loginUser() {
     this.userService.login(this.localUser);
   }
-
 
   authenticate() {
     this.userService.generateApiKey(this.localUser.username, this.localUser.password)
@@ -73,7 +68,6 @@ export class LoginComponent {
         () => { if (this.apiKey) { this.goToProjects(); } }
       );
   }
-
 
   clear() {
     this.localUser.username = '';
@@ -85,23 +79,3 @@ export class LoginComponent {
   }
 
 }
-
-
-
-// export class LoginComponent {
-//   localUser = {
-//     username: '',
-//     password: ''
-//   }
-//   constructor(private _service:AuthService, private _router: Router) {
-//   }
-//
-//   login() {
-//     this._service.loginfn(this.localUser).then((res) => {
-//       if(res)
-//         this._router.navigate(['Dashboard']);
-//       else
-//         console.log(res);
-//     })
-//   }
-// }
